@@ -1,6 +1,14 @@
-CEX.IO PHP client for Trader API
-================================
+CEX.IO PHP client for Trader API - Bitcoin Cloud Mining Marketplace
+===========================================================
 
+Who is CEX.IO?
+
+CEX.IO — is the first and leading commodity exchange in the Bitcoin community.
+
+Here you can buy or sell GHashes, Futures Contracts for the Bitfury ASIC chips or just trade on the increase or decrease of chip values.
+
+
+They provide an API so you can write some trading bots. ;)
 
 
 API Docs: https://www.cex.io/api
