@@ -12,21 +12,15 @@
 */
 
 
-// *** API settings ***
-
-$username = "<ENTER_HERE>";  // Username (NOTE: CASE SENSITIVE!!!)
-$key = '<ENTER_HERE>'; // your API-key
-$secret = '<ENTER_HERE>'; // your Secret-key	
-	
-$VERSION = '0.10 beta';
+define('VERSION','0.10.1 beta');
 // ___________________________________________________________________________________________ ____________ _ ___ _ __  _  .
 function cexio_query($path, array $req = array()) {
 
 	$mt = explode(' ', microtime());
  
-        $sign = strtoupper(hash_hmac("sha256", $mt[1] . $username . $key, $secret));
+        $sign = strtoupper(hash_hmac("sha256", $mt[1] . USERNAME . KEY, SECRET));
        
-        $req['key'] = $key;
+        $req['key'] = KEY;
         $req['signature'] = $sign;
         $req['nonce'] = $mt[1];
        
@@ -35,7 +29,7 @@ function cexio_query($path, array $req = array()) {
  
         # generate the extra headers
         $headers = array(
-                'key: '.$key,
+                'key: '.$req['key'],
                 'signature: '.$sign,
                 'nonce:'.$mt[1]
         );
@@ -46,7 +40,7 @@ function cexio_query($path, array $req = array()) {
 	if (is_null($ch)) {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; CEX.IO PHP client v'.$VERSION.'; '.php_uname('s').'; PHP/'.phpversion().')');
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; CEX.IO PHP client v'. VERSION .'; '.php_uname('s').'; PHP/'.phpversion().')');
 	}
 	curl_setopt($ch, CURLOPT_URL, $path);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
@@ -63,7 +57,7 @@ function cexio_query($path, array $req = array()) {
 // ___________________________________________________________________________________________ ____________ _ ___ _ __  _  .
 
 // example 1: get infos about the account, plus the list of rights we have access to
-var_dump(cexio_query('https://cex.io/api/balance/'));
+//var_dump(cexio_query('https://cex.io/api/balance/'));
  
 /* EXAMPLE OUTPUT:
   
