@@ -16,7 +16,7 @@ if (isset($balance_o['BTC']['orders'])){
 	if ($balance_o['BTC']['orders']> 0){
 		print "<br>";
 		print "<br>";
-		print "GigaHash for Sale: <br>";
+		print "Bitcoins in Orders: <br>";
 		print $balance_o['BTC']['orders'];
 		print " &#3647;";
 	}
@@ -35,7 +35,7 @@ if (isset($balance_o['GHS']['orders'])){
 	if ($balance_o['GHS']['orders']> 0){
 		print "<br>";
 		print "<br>";
-		print "Gigahash Ordered: <br>";
+		print "GigaHash for Sale: <br>";
 		print $balance_o['GHS']['orders'];
 		print " GHS";
 	}
