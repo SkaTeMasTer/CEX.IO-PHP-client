@@ -3,39 +3,39 @@ include('config.inc.php');
 include('cexio-grabber.php'); 
 
 $json_balance = json_encode(cexio_query('https://cex.io/api/balance/'));
-$balance_o = json_decode($json_balance,true);
+$balance = json_decode($json_balance,true);
 
-// Set Symbols
+// Define Currency/Commody Symbols
 define('BTCSYM','&#3647;');
 define('GHZSYM','GHS');
 
 // Show Account name.
-print "CEX.IO Account for " .USERNAME. "<br><br>";
+print "CEX.IO Account info for " .USERNAME. "<br><br>";
 
 // Show balances only when availanble.
-if (isset($balance_o['BTC']['available'])){
-	if ($balance_o['BTC']['available']> 0){
+if (isset($balance['BTC']['available'])){
+	if ($balance['BTC']['available']> 0){
 		print "Bitcoins Available: <br>";
-		print $balance_o['BTC']['available']. " " .BTCSYM;
+		print $balance['BTC']['available']. " " .BTCSYM;
 	}
 }
-if (isset($balance_o['BTC']['orders'])){
-	if ($balance_o['BTC']['orders']> 0){
+if (isset($balance['BTC']['orders'])){
+	if ($balance['BTC']['orders']> 0){
 		print "<br><br>Bitcoins in Orders: <br>";
-		print $balance_o['BTC']['orders']. " " .BTCSYM;
+		print $balance['BTC']['orders']. " " .BTCSYM;
 	}
 }
-if (isset($balance_o['GHS']['available'])){
-	if ($balance_o['GHS']['available']> 0){
+if (isset($balance['GHS']['available'])){
+	if ($balance['GHS']['available']> 0){
 		print "<br><br>Gigahash Available: <br>";
-		print $balance_o['GHS']['available']. " " .GHZSYM;
+		print $balance['GHS']['available']. " " .GHZSYM;
 	}
 }
 
-if (isset($balance_o['GHS']['orders'])){
-	if ($balance_o['GHS']['orders']> 0){
+if (isset($balance['GHS']['orders'])){
+	if ($balance['GHS']['orders']> 0){
 		print "<br><br>GigaHash for Sale: <br>";
-		print $balance_o['GHS']['orders']. " " .GHZSYM;
+		print $balance['GHS']['orders']. " " .GHZSYM;
 	}
 }
 ?>
