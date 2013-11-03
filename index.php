@@ -13,9 +13,6 @@
 include('config.inc.php');
 include('cexio-grabber.php'); 
 
-$json_balance = json_encode(cexio_query('https://cex.io/api/balance/'));
-$balance = json_decode($json_balance,true);
-
 // Define Currency/Commodity Symbols
 define('BTCSYM','&#3647;');
 define('GHZSYM','GHS');
@@ -23,7 +20,9 @@ define('GHZSYM','GHS');
 // Show Account name.
 print "CEX.IO Account info for " .USERNAME. "<br><br>";
 
-// Show balances only when availanble.
+// Show balances.
+$balance = cexio_query('https://cex.io/api/balance/');
+// But only when availanble!
 if (isset($balance['BTC']['available'])){
 	if ($balance['BTC']['available']> 0){
 		print "Bitcoins Available: <br>";
