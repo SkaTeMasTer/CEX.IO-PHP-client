@@ -2,8 +2,8 @@
 include('config.inc.php');
 include('cexio-grabber.php'); 
 
-$balance = json_encode(cexio_query('https://cex.io/api/balance/'));
-$balance_o = json_decode($balance,true);
+$json = json_encode(cexio_query('https://cex.io/api/balance/'));
+$balance_o = json_decode($json,true);
 echo "CEX.IO Account for " .USERNAME. "<br><br>";
 if (isset($balance_o['BTC']['available'])){
 	if ($balance_o['BTC']['available']> 0){
