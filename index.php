@@ -9,7 +9,10 @@ $balance_o = json_decode($json_balance,true);
 define('BTCSYM','&#3647;');
 define('GHZSYM','GHS');
 
-echo "CEX.IO Account for " .USERNAME. "<br><br>";
+// Show Account name.
+print "CEX.IO Account for " .USERNAME. "<br><br>";
+
+// Show balances only when availanble.
 if (isset($balance_o['BTC']['available'])){
 	if ($balance_o['BTC']['available']> 0){
 		print "Bitcoins Available: <br>";
