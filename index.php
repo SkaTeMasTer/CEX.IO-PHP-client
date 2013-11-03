@@ -16,7 +16,7 @@ include('cexio-grabber.php');
 $json_balance = json_encode(cexio_query('https://cex.io/api/balance/'));
 $balance = json_decode($json_balance,true);
 
-// Define Currency/Commody Symbols
+// Define Currency/Commodity Symbols
 define('BTCSYM','&#3647;');
 define('GHZSYM','GHS');
 
