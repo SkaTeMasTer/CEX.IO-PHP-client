@@ -11,7 +11,6 @@
  * https://www.cex.io/api
 */
 
-
 define('VERSION','0.10.1 beta');
 // ___________________________________________________________________________________________ ____________ _ ___ _ __  _  .
 function cexio_query($path, array $req = array()) {
@@ -57,8 +56,8 @@ function cexio_query($path, array $req = array()) {
 // ___________________________________________________________________________________________ ____________ _ ___ _ __  _  .
 
 // example 1: get infos about the account, plus the list of rights we have access to
-//var_dump(cexio_query('https://cex.io/api/balance/'));
- 
+// var_dump(cexio_query('https://cex.io/api/balance/'));
+
 /* EXAMPLE OUTPUT:
   
   array(3) {
