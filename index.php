@@ -51,7 +51,7 @@ if (isset($balance['BTC']['orders'])){
 		print $balance['BTC']['orders']. " " .BTCSYM. "<br>";
 		// Total BTC Owned
 		define('TOTBTC',($balance['BTC']['orders'] + $balance['BTC']['available']));
-		print "<br><br>Total Bitcoin on Account: <br>";
+		print "<br><br>Total Bitcoins on Account: <br>";
 		print TOTBTC. " " .GHZSYM. "<br>";
 	}
 }
