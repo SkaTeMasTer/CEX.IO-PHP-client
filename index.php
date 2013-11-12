@@ -57,4 +57,21 @@ if (isset($balance['GHS']['orders'])){
 		print TOTGHS. " " .GHZSYM. "<br>";
 	}
 }
+if (isset($balance['BF1']['available'])){
+	if ($balance['BF1']['available']> 0){
+		print "<br><br>Bitfuryh Available: <br>";
+		print $balance['BF1']['available']. " " .GHZSYM;
+	}
+}
+if (isset($balance['BF1']['orders'])){
+	if ($balance['BF1']['orders']> 0){
+		print "<br><br>Bitfury for Sale: <br>";
+		print $balance['BF1']['orders']. " " .GHZSYM. "<br>";
+		define('TOTBF1',($balance['BF1']['orders'] + $balance['BF1']['available']));
+		print "<br><br>Total Bitfury on Account: <br>";
+		print TOTBF1. " " .GHZSYM. "<br>";
+	}
+}
+//
+// More stuff to be added...
 ?>
