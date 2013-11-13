@@ -53,12 +53,46 @@ function cexio_query($path, array $req = array()) {
 	if (!$dec) throw new Exception('Invalid data received, please make sure connection is working and requested API exists');
 	return $dec;
 }
+
+$tickerGHS = cexio_query('https://cex.io/api/ticker/GHS/BTC');
+$tickerGHS = (object) array(
+	 'price' => (object) array(
+		  'high' => $tickerGHS['high'],
+		  'low' => $tickerGHS['low'],
+		  'last' => $tickerGHS['last']
+	  )
+	);
+$tickerBF1 = cexio_query('https://cex.io/api/ticker/BF1/BTC');
+$tickerBF1 = (object) array(
+	 'price' => (object) array(
+		  'high' => $tickerBF1['high'],
+		  'low' => $tickerBF1['low'],
+		  'last' => $tickerBF1['last']
+	  )
+	);
+$balance = cexio_query('https://cex.io/api/balance/');
+$balance = (object) array(
+	 'btc' => (object) array(
+		  'available' => $balance['BTC']['available'],
+		  'orders' => $balance['BTC']['orders'],
+		  'total' => ($balance['BTC']['orders'] + $balance['BTC']['available'])
+	  ),
+	 'ghs' => (object) array(
+		  'available' => $balance['GHS']['available'],
+		  'orders' => $balance['GHS']['orders'],
+		  'total' => ($balance['GHS']['orders'] + $balance['GHS']['available'])
+	  )#,
+	 #'bf1' => (object) array(
+	 #	  'available' => $balance['BF1']['available'],
+	 #	  'orders' => $balance['BF1']['orders'],
+	 #	  'total' => ($balance['BF1']['orders'] + $balance['BF1']['available'])
+	 #)
+	);
 // ___________________________________________________________________________________________ ____________ _ ___ _ __  _  .
 
 // example 1: get infos about the account, plus the list of rights we have access to
 // var_dump(cexio_query('https://cex.io/api/balance/'));
-
-/* EXAMPLE OUTPUT:
+ /* EXAMPLE OUTPUT:
   
   array(3) {
   ["timestamp"]=>
@@ -81,4 +115,23 @@ function cexio_query($path, array $req = array()) {
 
 */
 
+// example 2: show ghs high price
+/* EXAMPLE OUTPUT:
+ print $tickerGHS->price->high;
+*/
+
+// example 3: show ghs last price
+/* EXAMPLE OUTPUT:
+ print $tickerGHS->price->last;
+*/
+
+// example 4: show ghs low price
+ /* EXAMPLE OUTPUT:
+ print $tickerGHS->price->low;
+*/
+
+// example 5: show ghs balance
+/* EXAMPLE OUTPUT:
+ print $balance->ghs->available;
+*/
 ?>

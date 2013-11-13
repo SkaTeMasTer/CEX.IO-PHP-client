@@ -17,78 +17,72 @@ define('GHZSYM','GHS');
 // Show Account name.
 print "CEX.IO Account info for " .USERNAME. "<br><br>";
 // Show GHS the ticker.
-$ticker = cexio_query('https://cex.io/api/ticker/GHS/BTC');
 echo "High Price: ";
-echo print_r($ticker['high']."\n", true);
+echo $tickerGHS->price->high;
 echo "<br>Last Price: ";
-echo print_r($ticker['last']."\n", true);
+echo $tickerGHS->price->last;
 echo "<br>Low Price: ";
-echo print_r($ticker['low']."\n", true);
+echo $tickerGHS->price->low;
+
 /* Disabled due to beïng not available a.t.m.
-// Show BF1 the ticker.
-$ticker = cexio_query('https://cex.io/api/ticker/BF1/BTC');
-echo "<br><br>High Price: ";
-echo print_r($ticker['high']."\n", true);
+echo "<br>High Price: ";
+echo $tickerBF1->price->high;
 echo "<br>Last Price: ";
-echo print_r($ticker['last']."\n", true);
+echo $tickerBF1->price->last;
 echo "<br>Low Price: ";
-echo print_r($ticker['low']."\n", true);
+echo $tickerBF1->price->low;
 */
+
 // Show balances.
-$balance = cexio_query('https://cex.io/api/balance/');
-// But only when availanble!
-if (isset($balance['BTC']['available'])){
-	if ($balance['BTC']['available']> 0){
+if (isset($balance->btc->available)){
+	if ($balance->btc->available> 0){
 		// BTC Balance
 		print "<br><br>Bitcoins Available: <br>";
-		print $balance['BTC']['available']. " " .BTCSYM;
+		print $balance->btc->available. " " .BTCSYM;
 	}
 }
-if (isset($balance['BTC']['orders'])){
-	if ($balance['BTC']['orders']> 0){
+if (isset($balance->btc->orders)){
+	if ($balance->btc->orders> 0){
 		// BTC Balance on Orders
 		print "<br><br>Bitcoins in Orders: <br>";
-		print $balance['BTC']['orders']. " " .BTCSYM. "<br>";
+		print $balance->btc->orders. " " .BTCSYM. "<br>";
 		// Total BTC Owned
-		define('TOTBTC',($balance['BTC']['orders'] + $balance['BTC']['available']));
 		print "<br><br>Total Bitcoins on Account: <br>";
-		print TOTBTC. " " .GHZSYM. "<br>";
+		print $balance->btc->total. " " .GHZSYM. "<br>";
 	}
 }
-if (isset($balance['GHS']['available'])){
-	if ($balance['GHS']['available']> 0){
+if (isset($balance->ghs->available)){
+	if ($balance->ghs->available> 0){
 		// GHS on Stock
 		print "<br><br>Gigahash Available: <br>";
-		print $balance['GHS']['available']. " " .GHZSYM;
+		print $balance->ghs->available. " " .GHZSYM;
 	}
 }
-if (isset($balance['GHS']['orders'])){
-	if ($balance['GHS']['orders']> 0){
+if (isset($balance->ghs->orders)){
+	if ($balance->ghs->orders> 0){
 		// GHS for Sale
 		print "<br><br>GigaHash for Sale: <br>";
-		print $balance['GHS']['orders']. " " .GHZSYM. "<br>";
+		print $balance->ghs->orders. " " .GHZSYM. "<br>";
 		// Total GHS Owned
-		define('TOTGHS',($balance['GHS']['orders'] + $balance['GHS']['available']));
 		print "<br><br>Total GigaHash on Account: <br>";
-		print TOTGHS. " " .GHZSYM. "<br>";
+		print $balance->ghs->total. " " .GHZSYM. "<br>";
 	}
 }
-if (isset($balance['BF1']['available'])){
-	if ($balance['BF1']['available']> 0){
+if (isset($balance->bf1->available)){
+	if ($balance->bf1->available> 0){
 		// BF1 on Stock
 		print "<br><br>Bitfuryh Available: <br>";
-		print $balance['BF1']['available']. " " .GHZSYM;
+		print $balance->bf1->available. " " .GHZSYM;
 	}
 }
-if (isset($balance['BF1']['orders'])){
-	if ($balance['BF1']['orders']> 0){
+if (isset($balance->bf1->orders)){
+	if (isset($balance->bf1->orders) || $balance->bf1->orders> 0){
 		// BF1 for Sale
 		print "<br><br>Bitfury for Sale: <br>";
-		print $balance['BF1']['orders']. " " .GHZSYM. "<br>";
+		print $balance->bf1->orders. " " .GHZSYM. "<br>";
 		// Total BF1 Owned
-		define('TOTBF1',($balance['BF1']['orders'] + $balance['BF1']['available']));
 		print "<br><br>Total Bitfury on Account: <br>";
-		print TOTBF1. " " .GHZSYM. "<br>";
+		print $balance->bf1->total. " " .GHZSYM. "<br>";
 	}
 }
 //
