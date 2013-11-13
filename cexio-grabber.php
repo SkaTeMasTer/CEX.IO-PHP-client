@@ -117,22 +117,32 @@ $balance = (object) array(
 */
 
 // example 2: show ghs high price
+// print $tickerGHS->price->high;
 /* EXAMPLE OUTPUT:
- print $tickerGHS->price->high;
+ 0.1014
 */
 
 // example 3: show ghs last price
+// print $tickerGHS->price->last;
 /* EXAMPLE OUTPUT:
- print $tickerGHS->price->last;
+ 0.1011
 */
 
 // example 4: show ghs low price
+// print $tickerGHS->price->low;
  /* EXAMPLE OUTPUT:
- print $tickerGHS->price->low;
+ 0.108
 */
 
 // example 5: show ghs balance
+// print $balance->ghs->available;
 /* EXAMPLE OUTPUT:
- print $balance->ghs->available;
+ 194.25621640
+*/
+
+// example 6: show total ghs balance
+// print $balance->ghs->total;
+/* EXAMPLE OUTPUT:
+ 197.5562164
 */
 ?>
