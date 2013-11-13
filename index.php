@@ -76,7 +76,7 @@ if (isset($balance->bf1->available)){
 	}
 }
 if (isset($balance->bf1->orders)){
-	if (isset($balance->bf1->orders) || $balance->bf1->orders> 0){
+	if ($balance->bf1->orders> 0){
 		// BF1 for Sale
 		print "<br><br>Bitfury for Sale: <br>";
 		print $balance->bf1->orders. " " .GHZSYM. "<br>";
