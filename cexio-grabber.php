@@ -8,6 +8,17 @@
  *
  * Oct 27, 2013 - They just released their API access last week, so I thought a seed to get some bots started...  -Shawn Reimerdes
  *
+ * Query Ticker
+ * Nov 13, 2013 - Added some objects to the library to clean up the mess, added ticker...  -Davy Moedbeck - A.k.a. MasterX1582
+ *
+ * This sample is made available by Shawn Reimerdes and moddified by MasterX1582.
+ * If this is usefull for you, feel free to support me by sending some bitcoins to 1MegaXG1bd6mTEQCdAMjVzGexcYrF5LJKv
+ * The writers of this peace of code can absolutely not be held responsible by any losses made by use of this piece of code. 
+ * You are the only person totaly responsible for running this software.
+ * 
+ * Enjoy!
+ * MasterX1582
+ *
  * https://www.cex.io/api
 */
 
@@ -54,8 +65,8 @@ function cexio_query($path, array $req = array()) {
 	return $dec;
 }
 
-define('URL', 'https://cex.io/api');
-$tickerGHS = cexio_query(URL. '/ticker/GHS/BTC');
+define('APIURL', 'https://cex.io/api');
+$tickerGHS = cexio_query(APIURL. '/ticker/GHS/BTC');
 $tickerGHS = (object) array(
 	 'price' => (object) array(
 		  'high' => $tickerGHS['high'],
@@ -63,7 +74,7 @@ $tickerGHS = (object) array(
 		  'last' => $tickerGHS['last']
 	  )
 	);
-$tickerBF1 = cexio_query(URL. '/ticker/BF1/BTC');
+$tickerBF1 = cexio_query(APIURL. '/ticker/BF1/BTC');
 $tickerBF1 = (object) array(
 	 'price' => (object) array(
 		  'high' => $tickerBF1['high'],
@@ -71,7 +82,7 @@ $tickerBF1 = (object) array(
 		  'last' => $tickerBF1['last']
 	  )
 	);
-$balance = cexio_query(URL. '/balance/');
+$balance = cexio_query(APIURL. '/balance/');
 $balance = (object) array(
 	 'btc' => (object) array(
 		  'available' => $balance['BTC']['available'],
