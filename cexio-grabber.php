@@ -54,7 +54,8 @@ function cexio_query($path, array $req = array()) {
 	return $dec;
 }
 
-$tickerGHS = cexio_query('https://cex.io/api/ticker/GHS/BTC');
+define('URL', 'https://cex.io/api');
+$tickerGHS = cexio_query(URL. '/ticker/GHS/BTC');
 $tickerGHS = (object) array(
 	 'price' => (object) array(
 		  'high' => $tickerGHS['high'],
@@ -62,7 +63,7 @@ $tickerGHS = (object) array(
 		  'last' => $tickerGHS['last']
 	  )
 	);
-$tickerBF1 = cexio_query('https://cex.io/api/ticker/BF1/BTC');
+$tickerBF1 = cexio_query(URL. '/ticker/BF1/BTC');
 $tickerBF1 = (object) array(
 	 'price' => (object) array(
 		  'high' => $tickerBF1['high'],
@@ -70,7 +71,7 @@ $tickerBF1 = (object) array(
 		  'last' => $tickerBF1['last']
 	  )
 	);
-$balance = cexio_query('https://cex.io/api/balance/');
+$balance = cexio_query(URL. '/balance/');
 $balance = (object) array(
 	 'btc' => (object) array(
 		  'available' => $balance['BTC']['available'],
