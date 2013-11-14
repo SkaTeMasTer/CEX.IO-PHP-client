@@ -8,25 +8,29 @@
  *
  * Oct 27, 2013 - They just released their API access last week, so I thought a seed to get some bots started...  -Shawn Reimerdes
  *
+ * Query Ticker
+ * Nov 13, 2013 - Added some objects to the library to clean up the mess, added ticker...  -Davy Moedbeck - A.k.a. MasterX1582
+ *
+ * This sample is made available by Shawn Reimerdes and moddified by MasterX1582.
+ * If this is usefull for you, feel free to support me by sending some bitcoins to 1MegaXG1bd6mTEQCdAMjVzGexcYrF5LJKv
+ * The writers of this peace of code can absolutely not be held responsible by any losses made by use of this piece of code. 
+ * You are the only person totaly responsible for running this software.
+ * 
+ * Enjoy!
+ * MasterX1582
+ *
  * https://www.cex.io/api
 */
 
-
-// *** API settings ***
-
-$username = "<ENTER_HERE>";  // Username (NOTE: CASE SENSITIVE!!!)
-$key = '<ENTER_HERE>'; // your API-key
-$secret = '<ENTER_HERE>'; // your Secret-key	
-	
-$VERSION = '0.10 beta';
+define('VERSION','0.10.1 beta');
 // ___________________________________________________________________________________________ ____________ _ ___ _ __  _  .
 function cexio_query($path, array $req = array()) {
 
 	$mt = explode(' ', microtime());
  
-        $sign = strtoupper(hash_hmac("sha256", $mt[1] . $username . $key, $secret));
+        $sign = strtoupper(hash_hmac("sha256", $mt[1] . USERNAME . KEY, SECRET));
        
-        $req['key'] = $key;
+        $req['key'] = KEY;
         $req['signature'] = $sign;
         $req['nonce'] = $mt[1];
        
@@ -35,7 +39,7 @@ function cexio_query($path, array $req = array()) {
  
         # generate the extra headers
         $headers = array(
-                'key: '.$key,
+                'key: '.$req['key'],
                 'signature: '.$sign,
                 'nonce:'.$mt[1]
         );
@@ -46,7 +50,7 @@ function cexio_query($path, array $req = array()) {
 	if (is_null($ch)) {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; CEX.IO PHP client v'.$VERSION.'; '.php_uname('s').'; PHP/'.phpversion().')');
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; CEX.IO PHP client v'. VERSION .'; '.php_uname('s').'; PHP/'.phpversion().')');
 	}
 	curl_setopt($ch, CURLOPT_URL, $path);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
@@ -60,12 +64,47 @@ function cexio_query($path, array $req = array()) {
 	if (!$dec) throw new Exception('Invalid data received, please make sure connection is working and requested API exists');
 	return $dec;
 }
+
+define('APIURL', 'https://cex.io/api');
+$tickerGHS = cexio_query(APIURL. '/ticker/GHS/BTC');
+$tickerGHS = (object) array(
+	 'price' => (object) array(
+		  'high' => $tickerGHS['high'],
+		  'low' => $tickerGHS['low'],
+		  'last' => $tickerGHS['last']
+	  )
+	);
+$tickerBF1 = cexio_query(APIURL. '/ticker/BF1/BTC');
+$tickerBF1 = (object) array(
+	 'price' => (object) array(
+		  'high' => $tickerBF1['high'],
+		  'low' => $tickerBF1['low'],
+		  'last' => $tickerBF1['last']
+	  )
+	);
+$balance = cexio_query(APIURL. '/balance/');
+$balance = (object) array(
+	 'btc' => (object) array(
+		  'available' => $balance['BTC']['available'],
+		  'orders' => $balance['BTC']['orders'],
+		  'total' => ($balance['BTC']['orders'] + $balance['BTC']['available'])
+	  ),
+	 'ghs' => (object) array(
+		  'available' => $balance['GHS']['available'],
+		  'orders' => $balance['GHS']['orders'],
+		  'total' => ($balance['GHS']['orders'] + $balance['GHS']['available'])
+	  )#,
+	 #'bf1' => (object) array(
+	 #	  'available' => $balance['BF1']['available'],
+	 #	  'orders' => $balance['BF1']['orders'],
+	 #	  'total' => ($balance['BF1']['orders'] + $balance['BF1']['available'])
+	 #)
+	);
 // ___________________________________________________________________________________________ ____________ _ ___ _ __  _  .
 
 // example 1: get infos about the account, plus the list of rights we have access to
-var_dump(cexio_query('https://cex.io/api/balance/'));
- 
-/* EXAMPLE OUTPUT:
+// var_dump(cexio_query('https://cex.io/api/balance/'));
+ /* EXAMPLE OUTPUT:
   
   array(3) {
   ["timestamp"]=>
@@ -88,4 +127,33 @@ var_dump(cexio_query('https://cex.io/api/balance/'));
 
 */
 
+// example 2: show ghs high price
+// print $tickerGHS->price->high;
+/* EXAMPLE OUTPUT:
+ 0.1014
+*/
+
+// example 3: show ghs last price
+// print $tickerGHS->price->last;
+/* EXAMPLE OUTPUT:
+ 0.1011
+*/
+
+// example 4: show ghs low price
+// print $tickerGHS->price->low;
+ /* EXAMPLE OUTPUT:
+ 0.108
+*/
+
+// example 5: show ghs balance
+// print $balance->ghs->available;
+/* EXAMPLE OUTPUT:
+ 194.25621640
+*/
+
+// example 6: show total ghs balance
+// print $balance->ghs->total;
+/* EXAMPLE OUTPUT:
+ 197.5562164
+*/
 ?>
