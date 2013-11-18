@@ -18,12 +18,13 @@ include('cexio-grabber.php');
 define('BTCSYM','&#3647;');
 define('NMCSYM','&#8469;');
 define('GHSSYM','&#484;');
-define('BF1SYM','&#9641;');
+// define('BF1SYM','&#9641;');
+define('BF1SYM','&#9399;');
 // Show Account name.
 echo "CEX.IO Account info for " .USERNAME. "<br><br>";
 // Show GHS the ticker.
 if ($tickerGHSBTC->price->volume> 0){
-	echo "" .GHSSYM. " Price in " .BTCSYM. ": <br>";
+	echo "" .GHSSYM. "igaHash Price in " .BTCSYM. "itcoin: <br>";
 	echo "High Price: ";
 	echo $tickerGHSBTC->price->high;
 	echo "<br>Last Price: ";
@@ -38,7 +39,7 @@ if ($tickerGHSBTC->price->volume> 0){
 	echo $tickerGHSBTC->price->ask;
 }
 if ($tickerNMCBTC->price->volume> 0){
-	echo "<br><br>" .NMCSYM. " Price in " .BTCSYM. ": <br>";
+	echo "<br><br>" .NMCSYM. "amecoin Price in " .BTCSYM. "itcoin: <br>";
 	echo "High Price: ";
 	echo $tickerNMCBTC->price->high;
 	echo "<br>Last Price: ";
@@ -53,7 +54,7 @@ if ($tickerNMCBTC->price->volume> 0){
 	echo $tickerNMCBTC->price->ask;
 }
 if ($tickerGHSNMC->price->volume> 0){
-	echo "<br><br>" .GHSSYM. " Price in " .NMCSYM. ": <br>";
+	echo "<br><br>" .GHSSYM. "igaHash Price in " .NMCSYM. "amecoin: <br>";
 	echo "High Price: ";
 	echo $tickerGHSNMC->price->high;
 	echo "<br>Last Price: ";
@@ -68,7 +69,7 @@ if ($tickerGHSNMC->price->volume> 0){
 	echo $tickerGHSNMC->price->ask;
 }
 if ($tickerBF1BTC->price->volume> 0){
-	echo "<br><br>" .BF1SYM. " Price in " .BTCSYM. ": <br>";
+	echo "<br><br>" .BF1SYM. "itfury Price in " .BTCSYM. "itcoin: <br>";
 	echo "High Price: ";
 	echo $tickerBF1BTC->price->high;
 	echo "<br>Last Price: ";
@@ -90,57 +91,57 @@ if (isset($balance->timestamp)){
 if (isset($balance->btc->available)){
 	if ($balance->btc->available> 0){
 		// BTC Balance
-		echo "<br>Bitcoins (" .BTCSYM. ") Available: <br>" .$balance->btc->available. " " .BTCSYM. "<br>";
+		echo "<br>" .BTCSYM. "itcoins Available: <br>" .$balance->btc->available. " " .BTCSYM. "<br>";
 	}
 }
 if (isset($balance->btc->orders)){
 	if ($balance->btc->orders> 0){
 		// BTC Balance on Orders
-		echo "<br>Bitcoins (" .BTCSYM. ") in Orders: <br>" .$balance->btc->orders. " " .BTCSYM. "<br>";
+		echo "<br>" .BTCSYM. "itcoins in Orders: <br>" .$balance->btc->orders. " " .BTCSYM. "<br>";
 		// Total BTC Owned
-		echo "<br>Total Bitcoins (" .BTCSYM. ") on Account: <br>" .$balance->btc->total. " " .BTCSYM. "<br>";
+		echo "<br>Total " .BTCSYM. "itcoins on Account: <br>" .$balance->btc->total. " " .BTCSYM. "<br>";
 	}
 }
 if (isset($balance->nmc->available)){
 	if ($balance->nmc->available> 0){
 		// NMC Balance
-		echo "<br>Namecoins (" .NMCSYM. ") Available: <br>" .$balance->nmc->available. " " .NMCSYM. "<br>";
+		echo "<br>" .NMCSYM. "amecoins Available: <br>" .$balance->nmc->available. " " .NMCSYM. "<br>";
 	}
 }
 if (isset($balance->nmc->orders)){
 	if ($balance->nmc->orders> 0){
 		// NMC Balance on Orders
-		echo "<br>Namecoins (" .NMCSYM. ") in Orders: <br>" .$balance->nmc->orders. " " .NMCSYM. "<br>";
+		echo "<br>" .NMCSYM. "amecoins in Orders: <br>" .$balance->nmc->orders. " " .NMCSYM. "<br>";
 		// Total NMC Owned
-		echo "<br>Total Namecoins (" .NMCSYM. ") on Account: <br>" .$balance->nmc->total. " " .NMCSYM. "<br>";
+		echo "<br> Total " .NMCSYM. "amecoins on Account: <br>" .$balance->nmc->total. " " .NMCSYM. "<br>";
 	}
 }
 if (isset($balance->ghs->available)){
 	if ($balance->ghs->available> 0){
 		// GHS on Stock
-		echo "<br>Gigahash (" .GHSSYM. ") Available: <br>" .$balance->ghs->available. " " .GHSSYM. "<br>";
+		echo "<br>" .GHSSYM. "igahash Available: <br>" .$balance->ghs->available. " " .GHSSYM. "<br>";
 	}
 }
 if (isset($balance->ghs->orders)){
 	if ($balance->ghs->orders> 0){
 		// GHS for Sale
-		echo "<br>GigaHash (" .GHSSYM. ") for Sale: <br>" .$balance->ghs->orders. " " .GHSSYM. "<br>";
+		echo "<br>" .GHSSYM. "igaHash for Sale: <br>" .$balance->ghs->orders. " " .GHSSYM. "<br>";
 		// Total GHS Owned
-		echo "<br>Total GigaHash (" .GHSSYM. ") on Account: <br>" .$balance->ghs->total. " " .GHSSYM. "<br>";
+		echo "<br> Total " .GHSSYM. "igaHash on Account: <br>" .$balance->ghs->total. " " .GHSSYM. "<br>";
 	}
 }
 if (isset($balance->bf1->available)){
 	if ($balance->bf1->available> 0){
 		// BF1 on Stock
-		echo "<br>Bitfuryh (" .BF1SYM. ") Available: <br>" .$balance->bf1->available. " " .BF1SYM. "<br>";
+		echo "<br>" .BF1SYM. "itfuryh Available: <br>" .$balance->bf1->available. " " .BF1SYM. "<br>";
 	}
 }
 if (isset($balance->bf1->orders)){
 	if ($balance->bf1->orders> 0){
 		// BF1 for Sale
-		echo "<br>Bitfury (" .BF1SYM. ") for Sale: <br>" .$balance->bf1->orders. " " .BF1SYM. "<br>";
+		echo "<br>" .BF1SYM. "itfury for Sale: <br>" .$balance->bf1->orders. " " .BF1SYM. "<br>";
 		// Total BF1 Owned
-		echo "<br>Total Bitfury (" .BF1SYM. ") on Account: <br>" .$balance->bf1->total. " " .BF1SYM. "<br>";
+		echo "<br> Total " .BF1SYM. "itfury on Account: <br>" .$balance->bf1->total. " " .BF1SYM. "<br>";
 	}
 }
 //
