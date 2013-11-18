@@ -22,7 +22,7 @@
  * https://www.cex.io/api
 */
 
-define('VERSION','0.10.1 beta');
+define('VERSION','0.10.2 beta');
 // ___________________________________________________________________________________________ ____________ _ ___ _ __  _  .
 function cexio_query($path, array $req = array()) {
 
@@ -66,24 +66,53 @@ function cexio_query($path, array $req = array()) {
 }
 
 define('APIURL', 'https://cex.io/api');
-$tickerGHS = cexio_query(APIURL. '/ticker/GHS/BTC');
-$tickerGHS = (object) array(
+$tickerGHSBTC = cexio_query(APIURL. '/ticker/GHS/BTC');
+$tickerGHSBTC = (object) array(
 	 'price' => (object) array(
-		  'high' => $tickerGHS['high'],
-		  'low' => $tickerGHS['low'],
-		  'last' => $tickerGHS['last']
+		  'high' => $tickerGHSBTC['high'],
+		  'low' => $tickerGHSBTC['low'],
+		  'last' => $tickerGHSBTC['last'],
+		  'volume' => $tickerGHSBTC['volume'],
+		  'bid' => $tickerGHSBTC['bid'],
+		  'ask' => $tickerGHSBTC['ask']
 	  )
 	);
-$tickerBF1 = cexio_query(APIURL. '/ticker/BF1/BTC');
-$tickerBF1 = (object) array(
+$tickerNMCBTC = cexio_query(APIURL. '/ticker/NMC/BTC');
+$tickerNMCBTC = (object) array(
 	 'price' => (object) array(
-		  'high' => $tickerBF1['high'],
-		  'low' => $tickerBF1['low'],
-		  'last' => $tickerBF1['last']
+		  'high' => $tickerNMCBTC['high'],
+		  'low' => $tickerNMCBTC['low'],
+		  'last' => $tickerNMCBTC['last'],
+		  'volume' => $tickerNMCBTC['volume'],
+		  'bid' => $tickerNMCBTC['bid'],
+		  'ask' => $tickerNMCBTC['ask']
+	  )
+	);
+$tickerGHSNMC = cexio_query(APIURL. '/ticker/GHS/NMC');
+$tickerGHSNMC = (object) array(
+	 'price' => (object) array(
+		  'high' => $tickerGHSNMC['high'],
+		  'low' => $tickerGHSNMC['low'],
+		  'last' => $tickerGHSNMC['last'],
+		  'volume' => $tickerGHSNMC['volume'],
+		  'bid' => $tickerGHSNMC['bid'],
+		  'ask' => $tickerGHSNMC['ask']
+	  )
+	);
+$tickerBF1BTC = cexio_query(APIURL. '/ticker/BF1/BTC');
+$tickerBF1BTC = (object) array(
+	 'price' => (object) array(
+		  'high' => $tickerBF1BTC['high'],
+		  'low' => $tickerBF1BTC['low'],
+		  'last' => $tickerBF1BTC['last'],
+		  'volume' => $tickerBF1BTC['volume'],
+		  'bid' => $tickerBF1BTC['bid'],
+		  'ask' => $tickerBF1BTC['ask']
 	  )
 	);
 $balance = cexio_query(APIURL. '/balance/');
 $balance = (object) array(
+	 'timestamp' => $balance['timestamp'],
 	 'btc' => (object) array(
 		  'available' => $balance['BTC']['available'],
 		  'orders' => $balance['BTC']['orders'],
@@ -93,12 +122,17 @@ $balance = (object) array(
 		  'available' => $balance['GHS']['available'],
 		  'orders' => $balance['GHS']['orders'],
 		  'total' => ($balance['GHS']['orders'] + $balance['GHS']['available'])
-	  )#,
-	 #'bf1' => (object) array(
-	 #	  'available' => $balance['BF1']['available'],
-	 #	  'orders' => $balance['BF1']['orders'],
-	 #	  'total' => ($balance['BF1']['orders'] + $balance['BF1']['available'])
-	 #)
+	  ),
+	 'nmc' => (object) array(
+	 	  'available' => $balance['NMC']['available'],
+	 	  'orders' => $balance['NMC']['orders'],
+	 	  'total' => ($balance['NMC']['orders'] + $balance['NMC']['available'])
+	 ),
+	 'bf1' => (object) array(
+	 	  'available' => $balance['BF1']['available'],
+	 	  'orders' => $balance['BF1']['orders'],
+	 	  'total' => ($balance['BF1']['orders'] + $balance['BF1']['available'])
+	 )
 	);
 // ___________________________________________________________________________________________ ____________ _ ___ _ __  _  .
 
