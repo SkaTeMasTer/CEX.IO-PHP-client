@@ -7,6 +7,8 @@ CEX.IO — is the first and leading commodity exchange in the Bitcoin community.
 
 Here you can buy or sell GHashes, Futures Contracts for the Bitfury ASIC chips or just trade on the increase or decrease of chip values.
 
+HOMEPAGE: https://CEX.IO/r/0/Seerauber/0/
+
 
 They provide an API so you can write some trading bots. ;)
 
@@ -52,9 +54,10 @@ API authentication
 
 API access is achieved with basic seeded Signature which is a HMAC-SHA256 encoded message containing: nonce, client ID and API key. The HMAC-SHA256 code must be generated using a secret key that was generated with your API key.
 
-Note: you must logon to http://www.cex.io/ and go to your account / security and explicitly enable a new API key.
+Note: you must logon to https://CEX.IO/r/0/Seerauber/0/ and go to your account / security and explicitly enable a new API key.
 
 You will need as input for private functions:
+
   + Username  (ex: MyHaNDLeSensitivE)
   + API key
   + API secret key
